@@ -1,0 +1,164 @@
+name: ✨ Feature Request
+description: Request a new feature or improvement for the school management system
+title: "[FEATURE] "
+labels: ["enhancement", "feature-request", "teacher-request"]
+assignees:
+  - copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide detailed information to help us understand and implement your idea.
+
+  - type: textarea
+    id: feature_description
+    attributes:
+      label: Feature Description
+      description: What new feature would you like to see?
+      placeholder: "Clearly describe the feature you want to be added"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem_solved
+    attributes:
+      label: Problem This Solves
+      description: What problem does this feature solve? What is the current limitation?
+      placeholder: "Describe the current challenge or limitation this feature would address"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: How do you envision this feature working?
+      placeholder: "Describe how you think this feature should work, including user interactions"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature_category
+    attributes:
+      label: Feature Category
+      description: What type of feature is this?
+      options:
+        - Student Management
+        - Activity Management
+        - Reporting/Analytics
+        - User Interface Improvement
+        - Authentication/Security
+        - Data Export/Import
+        - Communication/Notifications
+        - Scheduling
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: user_type
+    attributes:
+      label: Primary Users
+      description: Who would primarily use this feature?
+      options:
+        - Teachers
+        - Students
+        - Administrators
+        - All users
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature?
+      options:
+        - "Critical - Essential for daily operations"
+        - "High - Would significantly improve workflow"
+        - "Medium - Nice to have improvement"
+        - "Low - Minor enhancement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Provide specific examples of how this feature would be used
+      placeholder: "Example scenarios where this feature would be helpful"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will you know this feature is complete and working correctly?
+      value: |
+        - [ ] Feature is accessible to appropriate user types
+        - [ ] Feature works as described in the requirements
+        - [ ] Feature integrates well with existing functionality
+        - [ ] Feature is tested and documented
+        - [ ] No existing functionality is broken
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation_suggestions
+    attributes:
+      label: Implementation Suggestions
+      description: Do you have any ideas about how this could be implemented?
+      placeholder: "Any technical suggestions, UI mockups, or implementation approaches"
+
+  - type: checkboxes
+    id: related_areas
+    attributes:
+      label: Related System Areas
+      description: Which parts of the system might be affected by this feature?
+      options:
+        - label: Database schema changes
+        - label: API endpoints (backend)
+        - label: User interface (frontend)
+        - label: Authentication system
+        - label: Data validation
+        - label: User permissions
+
+  - type: textarea
+    id: alternatives_considered
+    attributes:
+      label: Alternatives Considered
+      description: Have you considered any alternative solutions?
+      placeholder: "Describe any workarounds you currently use or other approaches you've considered"
+
+  - type: textarea
+    id: technical_context
+    attributes:
+      label: Technical Context for Developer
+      value: |
+        **Current System Architecture:**
+        - Backend: FastAPI (`src/app.py`, `src/backend/`)
+        - Database: MongoDB with collections for activities and teachers
+        - Frontend: Static HTML/CSS/JS (`src/static/`)
+        - API: RESTful endpoints for activities and authentication
+        
+        **Key Components:**
+        - Activities: CRUD operations via `/activities` endpoints
+        - Authentication: Login system for teachers
+        - Registration: Student signup for activities
+        - Data Models: Activities, Teachers, Participants
+        
+        **Development Guidelines:**
+        - Maintain backward compatibility
+        - Follow existing code patterns
+        - Update both API and frontend as needed
+        - Consider data migration if schema changes required
+      render: markdown
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would help implement this feature?
+      placeholder: "Links to similar features, screenshots, references, or other helpful context"

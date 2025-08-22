@@ -1,0 +1,173 @@
+name: ⚙️ System Configuration
+description: Request system configuration changes, maintenance, or administrative tasks
+title: "[CONFIG] "
+labels: ["enhancement", "configuration", "teacher-request", "admin"]
+assignees:
+  - copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for system configuration changes, maintenance requests, or administrative tasks that don't fit other categories.
+
+  - type: dropdown
+    id: config_type
+    attributes:
+      label: Type of Configuration Request
+      description: What kind of system change do you need?
+      options:
+        - Database configuration
+        - System settings
+        - Performance optimization
+        - Security configuration
+        - Data backup/restore
+        - System maintenance
+        - Environment setup
+        - Integration with external systems
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: other_config_type
+    attributes:
+      label: Other Configuration Type
+      description: If you selected "Other" above, please specify
+      placeholder: "Describe the specific configuration change needed"
+
+  - type: textarea
+    id: current_configuration
+    attributes:
+      label: Current Configuration/Behavior
+      description: Describe the current system behavior or configuration
+      placeholder: "What is the current state that needs to be changed?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired_configuration
+    attributes:
+      label: Desired Configuration/Behavior
+      description: Describe the desired system behavior or configuration
+      placeholder: "What should the system do instead?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: business_justification
+    attributes:
+      label: Business Justification
+      description: Why is this configuration change needed?
+      placeholder: "e.g., Improve performance, enhance security, comply with policy, support new workflow"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency Level
+      description: How urgent is this configuration change?
+      options:
+        - "Critical - System is impacted"
+        - "High - Affects daily operations"
+        - "Medium - Improvement needed"
+        - "Low - Nice to have"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: affected_components
+    attributes:
+      label: System Components Affected
+      description: Which parts of the system might be affected?
+      options:
+        - label: Database (MongoDB)
+        - label: Backend API (FastAPI)
+        - label: Frontend interface
+        - label: Authentication system
+        - label: File storage
+        - label: Network configuration
+        - label: Environment variables
+        - label: Dependencies/libraries
+
+  - type: textarea
+    id: risk_assessment
+    attributes:
+      label: Risk Assessment
+      description: What are the potential risks or impacts of this change?
+      placeholder: "Consider impacts on existing data, user access, system stability, etc."
+
+  - type: textarea
+    id: rollback_plan
+    attributes:
+      label: Rollback Plan
+      description: How can this change be reverted if needed?
+      placeholder: "Describe how to undo this change if problems occur"
+
+  - type: textarea
+    id: testing_requirements
+    attributes:
+      label: Testing Requirements
+      description: How should this configuration change be tested?
+      placeholder: "Describe what should be tested to verify the change works correctly"
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will you know this configuration change is complete and working?
+      value: |
+        - [ ] Configuration change is implemented correctly
+        - [ ] System behaves as described in requirements
+        - [ ] No negative impact on existing functionality
+        - [ ] Change is tested and verified
+        - [ ] Documentation is updated if needed
+        - [ ] Rollback plan is confirmed working
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: technical_specifications
+    attributes:
+      label: Technical Specifications
+      description: Any specific technical requirements or constraints?
+      placeholder: "e.g., Specific configuration values, version requirements, compatibility needs"
+
+  - type: textarea
+    id: implementation_context
+    attributes:
+      label: Technical Context for Developer
+      value: |
+        **Current System Architecture:**
+        - **Backend:** FastAPI application (`src/app.py`)
+        - **Database:** MongoDB (localhost:27017, database: 'mergington_high')
+        - **Collections:** activities_collection, teachers_collection
+        - **Authentication:** Simple password hashing with Argon2
+        - **Frontend:** Static files served from `src/static/`
+        - **Dependencies:** Listed in `src/requirements.txt`
+        
+        **Configuration Files:**
+        - `src/app.py` - Main application configuration
+        - `src/backend/database.py` - Database connection and initialization
+        - `src/requirements.txt` - Python dependencies
+        - `.vscode/launch.json` - Development configuration
+        
+        **Environment Considerations:**
+        - Development environment uses localhost MongoDB
+        - Static files served via FastAPI StaticFiles
+        - CORS not currently configured
+        - No environment-specific configuration files
+        
+        **Security Notes:**
+        - Passwords hashed with Argon2
+        - No HTTPS configuration in development
+        - Simple session management via localStorage
+      render: markdown
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would help implement this configuration change?
+      placeholder: "References, documentation links, examples from other systems, etc."
