@@ -1,0 +1,139 @@
+name: ✏️ Modify Existing Activity
+description: Request changes to an existing extracurricular activity
+title: "[MODIFY] Update activity: "
+labels: ["enhancement", "activity", "teacher-request", "modification"]
+assignees:
+  - copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request changes to an existing activity. Please provide specific details about what needs to be modified.
+
+  - type: dropdown
+    id: existing_activity
+    attributes:
+      label: Existing Activity Name
+      description: Which activity needs to be modified?
+      options:
+        - Chess Club
+        - Programming Class
+        - Math Olympiad
+        - Debate Team
+        - Weekend Robotics Workshop
+        - Science Olympiad
+        - Sunday Chess Tournament
+        - Other (specify in details)
+    validations:
+      required: true
+
+  - type: input
+    id: other_activity
+    attributes:
+      label: Other Activity Name
+      description: If you selected "Other" above, please specify the activity name
+      placeholder: "Enter the exact activity name"
+
+  - type: checkboxes
+    id: modification_type
+    attributes:
+      label: What needs to be modified?
+      description: Check all that apply
+      options:
+        - label: Activity description
+        - label: Schedule (days/times)
+        - label: Maximum participants
+        - label: Activity name
+        - label: Supervising teacher
+        - label: Other (specify below)
+
+  - type: textarea
+    id: current_details
+    attributes:
+      label: Current Activity Details
+      description: What are the current details that need to be changed?
+      placeholder: "e.g., Currently meets Mondays 3:15-4:45 PM, limited to 12 students"
+    validations:
+      required: true
+
+  - type: textarea
+    id: requested_changes
+    attributes:
+      label: Requested Changes
+      description: What specific changes do you want to make?
+      placeholder: "e.g., Change schedule to Tuesdays and Thursdays 3:30-5:00 PM, increase capacity to 20 students"
+    validations:
+      required: true
+
+  - type: input
+    id: new_schedule_days
+    attributes:
+      label: New Schedule Days (if applicable)
+      description: If changing schedule, what are the new days?
+      placeholder: "e.g., Tuesday, Thursday"
+
+  - type: input
+    id: new_start_time
+    attributes:
+      label: New Start Time (if applicable)
+      description: If changing schedule, what is the new start time? (24-hour format)
+      placeholder: "e.g., 15:30 for 3:30 PM"
+
+  - type: input
+    id: new_end_time
+    attributes:
+      label: New End Time (if applicable)
+      description: If changing schedule, what is the new end time? (24-hour format)
+      placeholder: "e.g., 17:00 for 5:00 PM"
+
+  - type: input
+    id: new_max_participants
+    attributes:
+      label: New Maximum Participants (if applicable)
+      description: If changing capacity, what is the new maximum?
+      placeholder: "e.g., 20"
+
+  - type: textarea
+    id: reason_for_change
+    attributes:
+      label: Reason for Change
+      description: Why is this modification needed?
+      placeholder: "e.g., Room availability conflict, increased student interest, teacher schedule change"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will you know this request is complete?
+      value: |
+        - [ ] Activity details are updated correctly in the system
+        - [ ] New schedule information displays properly
+        - [ ] Student registrations continue to work
+        - [ ] Any capacity changes are enforced
+        - [ ] Existing participants remain registered (unless specified otherwise)
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact_considerations
+    attributes:
+      label: Impact on Current Participants
+      description: How should current participants be handled? Should they be notified of changes?
+      placeholder: "e.g., Notify all current participants of schedule change, automatically transfer existing registrations"
+
+  - type: textarea
+    id: implementation_hints
+    attributes:
+      label: Implementation Hints
+      description: Any suggestions on how to implement these changes?
+      value: |
+        **Technical Notes for Developer:**
+        - Activity data is stored in MongoDB collection `activities_collection`
+        - Each activity has an `_id` field with the activity name
+        - Schedule details are stored in `schedule_details` object with `days`, `start_time`, `end_time`
+        - Participant list is in `participants` array
+        - Frontend JavaScript fetches activities from `/activities` endpoint
+      render: markdown

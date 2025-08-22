@@ -1,0 +1,108 @@
+name: 🏫 Add New Activity
+description: Request to add a new extracurricular activity to the school management system
+title: "[ACTIVITY] Add new activity: "
+labels: ["enhancement", "activity", "teacher-request"]
+assignees:
+  - copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for requesting a new activity! Please provide all the details below so our coding agent can implement this efficiently.
+
+  - type: input
+    id: activity_name
+    attributes:
+      label: Activity Name
+      description: What is the name of the new activity?
+      placeholder: "e.g., Photography Club, Drama Club, Science Fair Team"
+    validations:
+      required: true
+
+  - type: textarea
+    id: activity_description
+    attributes:
+      label: Activity Description
+      description: Provide a detailed description of what this activity involves
+      placeholder: "Describe what students will do, learn, or accomplish in this activity"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: schedule_days
+    attributes:
+      label: Days of the Week
+      description: Which days will this activity meet?
+      options:
+        - label: Monday
+        - label: Tuesday
+        - label: Wednesday
+        - label: Thursday
+        - label: Friday
+        - label: Saturday
+        - label: Sunday
+
+  - type: input
+    id: start_time
+    attributes:
+      label: Start Time
+      description: What time does the activity start? (Use 24-hour format)
+      placeholder: "e.g., 15:30 for 3:30 PM"
+    validations:
+      required: true
+
+  - type: input
+    id: end_time
+    attributes:
+      label: End Time
+      description: What time does the activity end? (Use 24-hour format)
+      placeholder: "e.g., 17:00 for 5:00 PM"
+    validations:
+      required: true
+
+  - type: input
+    id: max_participants
+    attributes:
+      label: Maximum Participants
+      description: What is the maximum number of students that can participate?
+      placeholder: "e.g., 15"
+    validations:
+      required: true
+
+  - type: input
+    id: teacher_supervisor
+    attributes:
+      label: Supervising Teacher
+      description: Which teacher will supervise this activity?
+      placeholder: "e.g., Ms. Rodriguez, Mr. Chen"
+    validations:
+      required: true
+
+  - type: textarea
+    id: special_requirements
+    attributes:
+      label: Special Requirements
+      description: Any special equipment, rooms, or resources needed?
+      placeholder: "e.g., Computer lab access, art supplies, gym space"
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will you know this request is complete?
+      value: |
+        - [ ] New activity appears in the activities list
+        - [ ] Activity has correct schedule information
+        - [ ] Activity accepts student registrations
+        - [ ] Maximum participant limit is enforced
+        - [ ] Activity information displays correctly to students
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information that would help implement this activity?
+      placeholder: "Context about why this activity is needed, similar existing activities, etc."

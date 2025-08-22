@@ -1,0 +1,169 @@
+name: 👥 User Management Request
+description: Request changes to teacher accounts, permissions, or user management
+title: "[USER] "
+labels: ["enhancement", "user-management", "teacher-request", "admin"]
+assignees:
+  - copilot
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form to request changes related to user accounts, permissions, or user management features.
+
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Type of User Management Request
+      description: What kind of user management change do you need?
+      options:
+        - Add new teacher account
+        - Modify existing teacher account
+        - Remove teacher account
+        - Change user permissions/roles
+        - Reset password
+        - Update user information
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: other_request_type
+    attributes:
+      label: Other Request Type
+      description: If you selected "Other" above, please specify
+      placeholder: "Describe the specific user management request"
+
+  - type: input
+    id: affected_username
+    attributes:
+      label: Affected Username
+      description: Which teacher account is affected? (leave blank for new accounts)
+      placeholder: "e.g., mrodriguez, mchen"
+
+  - type: input
+    id: new_username
+    attributes:
+      label: New Username (if applicable)
+      description: For new accounts or username changes
+      placeholder: "e.g., jsmith"
+
+  - type: input
+    id: display_name
+    attributes:
+      label: Display Name
+      description: The teacher's display name (e.g., "Ms. Smith", "Mr. Johnson")
+      placeholder: "e.g., Ms. Smith"
+
+  - type: dropdown
+    id: user_role
+    attributes:
+      label: User Role
+      description: What role should this user have?
+      options:
+        - teacher
+        - admin
+        - Other (specify below)
+
+  - type: input
+    id: other_role
+    attributes:
+      label: Other Role
+      description: If you selected "Other" above, please specify
+      placeholder: "Describe the specific role needed"
+
+  - type: textarea
+    id: request_details
+    attributes:
+      label: Detailed Request
+      description: Provide specific details about what needs to be changed
+      placeholder: "e.g., Create account for new art teacher Ms. Wilson who will supervise Art Club"
+    validations:
+      required: true
+
+  - type: textarea
+    id: justification
+    attributes:
+      label: Justification
+      description: Why is this user management change needed?
+      placeholder: "e.g., New hire, role change, security requirement, staff departure"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security_considerations
+    attributes:
+      label: Security Considerations
+      description: Check any security-related aspects that apply
+      options:
+        - label: New account needs secure password
+        - label: Account needs specific permissions
+        - label: Account should be temporarily disabled
+        - label: Emergency access required
+        - label: Account deactivation needed for departing staff
+
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Timeline Requirements
+      description: When does this change need to be completed?
+      placeholder: "e.g., Before start of next semester, ASAP for departing staff, by end of week"
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria
+      description: How will you know this request is complete?
+      value: |
+        - [ ] User account is created/modified/removed as requested
+        - [ ] User has appropriate permissions and role
+        - [ ] User can log in successfully (for new/modified accounts)
+        - [ ] User information displays correctly in the system
+        - [ ] No security vulnerabilities are introduced
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_teachers
+    attributes:
+      label: Current Teachers (for reference)
+      value: |
+        **Existing teacher accounts:**
+        - mrodriguez (Ms. Rodriguez) - teacher role
+        - mchen (Mr. Chen) - teacher role
+        - principal (Principal Martinez) - admin role
+        
+        **Default passwords are provided in the system for demo purposes**
+      render: markdown
+
+  - type: textarea
+    id: technical_implementation
+    attributes:
+      label: Technical Implementation Notes
+      value: |
+        **For Developer Reference:**
+        
+        **Database Structure:**
+        - Teachers stored in MongoDB `teachers_collection`
+        - Document structure: `{"_id": username, "username": str, "display_name": str, "password": hashed, "role": str}`
+        - Passwords hashed using Argon2 (`argon2-cffi` library)
+        
+        **Key Files:**
+        - `src/backend/database.py` - User data and password hashing
+        - `src/backend/routers/auth.py` - Authentication endpoints
+        - `src/backend/routers/activities.py` - Teacher permissions for activity management
+        
+        **Implementation Steps:**
+        1. Update `initial_teachers` list in database.py (for new accounts)
+        2. Consider adding user management API endpoints if needed
+        3. Hash passwords using existing `hash_password()` function
+        4. Test authentication flow with new/modified accounts
+        5. Verify permissions work correctly for activity management
+      render: markdown
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other information relevant to this user management request?
+      placeholder: "Additional details, special requirements, or context"
